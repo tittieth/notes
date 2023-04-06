@@ -61,10 +61,9 @@ router.post("/login", (req, res) => {
     }
 
     if (userName && password) {
-      let encodedUserName = encodeURI(userName);
       let sql = "SELECT * FROM users WHERE userName = ?";
 
-      connection.query(sql, encodedUserName, (err, data) => {
+      connection.query(sql, userName, (err, data) => {
         if (data.length > 0) {
           if (data[0].userPassword === password) {
             res.json(data);
