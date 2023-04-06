@@ -50,4 +50,31 @@ router.post("/add", (req, res) => {
     });
   });
 
+  router.put("/:documentId", (req, res) => {
+    let documentId = req.params.documentId;
+    let updatedDocument = req.body;
+  
+    connection.connect((err) => {
+      if (err) {
+        console.log("err", err);
+      }
+  
+      let sql = "UPDATE documents SET documentContent = ? WHERE documentId = ?";
+
+      let values = [
+        updatedDocument.updatedContent,
+        documentId
+      ];
+  
+      connection.query(sql, values, (err, data) => {
+        if (err) {
+          console.log("err", err);
+        }
+  
+        console.log("data från query", data);
+        res.json(data);
+      });
+    });
+  });
+
 module.exports = router;

@@ -11,3 +11,12 @@ Content-Type: application/json
     "newDocumentContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
     "userId": 1
 }
+
+###
+
+PUT http://localhost:3000/documents/2
+Content-Type: application/json
+
+{
+    "updatedContent": "Snart är det påskafton"
+}
