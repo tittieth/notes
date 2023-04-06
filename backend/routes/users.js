@@ -67,15 +67,16 @@ router.post("/login", (req, res) => {
         if (data.length > 0) {
           if (data[0].userPassword === password) {
             res.json(data);
+            console.log(data);
           } else {
-            res.send("Fel lösenord");
+            res.status(400).json("Fel lösenord");
           }
         } else {
-          res.send("Felaktigt användarnamn");
+          res.status(400).json("Felaktigt användarnamn");
         }
       });
     } else {
-      res.send("Fyll i användarnamn och lösenord");
+      res.status(400).json("Fyll i användarnamn och lösenord");
     }
   });
 });

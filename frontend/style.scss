@@ -1,4 +1,38 @@
-h1 {
-    color: seagreen;
-    font-size: 5rem;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+  }
+
+body {
+    background-color: #D7DCDD;
+    width: 100vw;
+    overflow-x: hidden;
+    min-height: 100vh;
 }
+
+.form-wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px;
+
+    .login-div {
+        display: flex;
+
+        #name, #password {
+            margin-right: 10px;
+            border-radius: 5px;
+            padding: 15px 35px;
+            border: none;
+        }
+    }
+
+    .login-btn, .signup-btn {
+        border-radius: 5px;
+        border: none;
+        padding: 15px 15px;
+    }
+
+}
+

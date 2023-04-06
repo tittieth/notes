@@ -50,6 +50,7 @@ router.post("/add", (req, res) => {
     });
   });
 
+  // Update documentcontent
   router.put("/:documentId", (req, res) => {
     let documentId = req.params.documentId;
     let updatedDocument = req.body;
