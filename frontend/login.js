@@ -1,3 +1,5 @@
+import printDocuments from "./documents.js";
+
 let loginApp = document.querySelector("#loginApp");
 let userMsg = document.querySelector("#userMsg");
 let loggedInMsg = document.querySelector("#loggedInMsg");
@@ -84,6 +86,7 @@ export function printLoginForm() {
                     Hoppas du har en fin dag!</h3>`;
                     localStorage.setItem("username", data.userName);
                     printLogoutBtn();
+                    printDocuments();
                 }
                 else {
                     userMsg.innerText = "Inloggning misslyckades, var vänlig och kontrollera användarnamn och lösenord."
