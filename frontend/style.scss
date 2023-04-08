@@ -1,3 +1,6 @@
+$dark-blue: #0C4160;
+$light-green: #D7DCDD;
+
 *{
     margin: 0;
     padding: 0;
@@ -6,7 +9,7 @@
   }
 
 body {
-    background-color: #D7DCDD;
+    background-color: $light-green;
     width: 100vw;
     overflow-x: hidden;
     min-height: 100vh;
@@ -32,7 +35,27 @@ body {
         border-radius: 5px;
         border: none;
         padding: 15px 15px;
+        cursor: pointer;
+    }
+
+    .login-btn:hover {
+        background-color: $dark-blue;
+        color: $light-green;
+    }
+
+    .signup-btn {
+        margin-right: 20px;
     }
 
 }
 
+
+main {
+
+    text-align: center;
+    margin-top: 150px;
+
+    h1 {
+        font-size: 4rem;
+    }
+}
