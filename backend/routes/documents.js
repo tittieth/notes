@@ -22,24 +22,25 @@ router.get('/', function(req, res) {
       });
 });
 
-// router.get('/:documentId', function(req, res) {
-//   connection.connect((err) => {
-//       if (err) {
-//         console.log("err", err);
-//       }
+router.post('/userId', function(req, res) {
+  const userId = req.body.userId;
+  connection.connect((err) => {
+      if (err) {
+        console.log("err", err);
+      }
   
-//       let sql = "SELECT documents. *, users.userName FROM documents JOIN users ON documents.userId = users.userId";
+      let sql = "SELECT * FROM documents WHERE userId = ?";
   
-//       connection.query(sql, (err, data) => {
-//         if (err) {
-//           console.log("err", err);
-//         }
+      connection.query(sql, userId, (err, data) => {
+        if (err) {
+          console.log("err", err);
+        }
   
-//         console.log("data från query", data);
-//         res.json(data);
-//       });
-//     });
-// });
+        console.log("data från query", data);
+        res.json(data);
+      });
+    });
+});
 
 /* Add a new user */
 router.post("/add", (req, res) => {
