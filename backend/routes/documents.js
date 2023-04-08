@@ -22,16 +22,17 @@ router.get('/', function(req, res) {
       });
 });
 
-router.post('/userId', function(req, res) {
-  const userId = req.body.userId;
+router.post('/user', function(req, res) {
+  const userName = req.body.userName;
   connection.connect((err) => {
       if (err) {
         console.log("err", err);
       }
   
-      let sql = "SELECT * FROM documents WHERE userId = ?";
+      // let sql = "SELECT * FROM documents WHERE userId = ?";
+      const sql = 'SELECT documents.*, users.userName FROM documents INNER JOIN users ON documents.userId = users.userId WHERE users.userName = ?';
   
-      connection.query(sql, userId, (err, data) => {
+      connection.query(sql, userName, (err, data) => {
         if (err) {
           console.log("err", err);
         }

@@ -1,41 +1,52 @@
 const app = document.getElementById("app");
 
-
 export default function printDocuments() {
-    fetch("http://localhost:3000/documents")
-    .then(res => res.json())
-    .then(documents => {
-        console.log(documents);
+  let user = localStorage.getItem("username");
 
-        let documentsWrapper = document.createElement("div");
-        documentsWrapper.classList.add("documents-wrapper");
+  let userName = {
+    userName: user
+  }
 
-        let documentsList = document.createElement("ul");
-        documentsList.classList.add("blogPosts");
-        documentsList.innerHTML = "";
+  fetch("http://localhost:3000/documents/user", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userName),
+  })
+    .then((res) => res.json())
+    .then((documents) => {
+      console.log(documents);
 
-        documentsWrapper.appendChild(documentsList);
+      let documentsWrapper = document.createElement("div");
+      documentsWrapper.classList.add("documents-wrapper");
 
-        documents.map(post => {
-            let li = document.createElement("li");
-            li.id = post.documentTitle;
+      let documentsList = document.createElement("ul");
+      documentsList.classList.add("blogPosts");
+      documentsList.innerHTML = "";
 
-            let title = document.createElement("h2");
-            let content = document.createElement("p");
-            let readMoreBtn = document.createElement("button");
-            readMoreBtn.innerText = "Läs mer"
+      documentsWrapper.appendChild(documentsList);
 
-            title.innerHTML = `${post.documentTitle}`
-            content.innerHTML = `${post.documentContent}`
-            li.append(title, content, readMoreBtn)
-            documentsList.append(li);
+      documents.map((post) => {
+        let li = document.createElement("li");
+        li.id = post.documentTitle;
 
-            readMoreBtn.addEventListener("click", () => {
-                console.log("clicked");
-            })
-    })
+        let title = document.createElement("h2");
+        let content = document.createElement("p");
+        let readMoreBtn = document.createElement("button");
+        readMoreBtn.innerText = "Läs mer";
 
-    app.innerHTML = "";
-    app.appendChild(documentsWrapper);
-    });  
+        title.innerHTML = `${post.documentTitle}`;
+        content.innerHTML = `${post.documentContent}`;
+        li.append(title, content, readMoreBtn);
+        documentsList.append(li);
+
+        readMoreBtn.addEventListener("click", () => {
+          console.log("clicked");
+        });
+      });
+
+      app.innerHTML = "";
+      app.appendChild(documentsWrapper);
+     });
 }

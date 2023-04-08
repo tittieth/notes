@@ -84,7 +84,7 @@ export function printLoginForm() {
                     userMsg.innerHTML = "";
                     loggedInMsg.innerHTML = `<h3>Du är nu inloggad ${data[0].userName}!<br>
                     Hoppas du har en fin dag!</h3>`;
-                    localStorage.setItem("username", data.userName);
+                    localStorage.setItem("username", data[0].userName);
                     printLogoutBtn();
                     printDocuments();
                 }
