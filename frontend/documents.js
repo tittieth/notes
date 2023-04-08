@@ -14,16 +14,25 @@ export default function printDocuments() {
         documentsList.classList.add("blogPosts");
         documentsList.innerHTML = "";
 
-        let readMoreBtn = document.createElement("button");
-        readMoreBtn.innerText = "Läs mer"
-
         documentsWrapper.appendChild(documentsList);
 
         documents.map(post => {
             let li = document.createElement("li");
             li.id = post.documentTitle;
-            li.innerHTML = `<h2>${post.documentTitle}</h2><p>${post.documentContent}</p><button>Läs mer</button>`;
+
+            let title = document.createElement("h2");
+            let content = document.createElement("p");
+            let readMoreBtn = document.createElement("button");
+            readMoreBtn.innerText = "Läs mer"
+
+            title.innerHTML = `${post.documentTitle}`
+            content.innerHTML = `${post.documentContent}`
+            li.append(title, content, readMoreBtn)
             documentsList.append(li);
+
+            readMoreBtn.addEventListener("click", () => {
+                console.log("clicked");
+            })
     })
 
     app.innerHTML = "";
