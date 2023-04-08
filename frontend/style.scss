@@ -1,61 +1,84 @@
-$dark-blue: #0C4160;
-$light-green: #D7DCDD;
+$dark-blue: #0c4160;
+$light-green: #d7dcdd;
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
-  }
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
 
 body {
-    background-color: $light-green;
-    width: 100vw;
-    overflow-x: hidden;
-    min-height: 100vh;
+  background-color: $light-green;
+  width: 100vw;
+  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 .form-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+
+  .login-div {
     display: flex;
-    justify-content: space-between;
-    margin: 20px;
 
-    .login-div {
-        display: flex;
-
-        #name, #password {
-            margin-right: 10px;
-            border-radius: 5px;
-            padding: 15px 35px;
-            border: none;
-        }
+    #name,
+    #password {
+      margin-right: 10px;
+      border-radius: 5px;
+      padding: 15px 35px;
+      border: none;
     }
+  }
 
-    .login-btn, .signup-btn {
-        border-radius: 5px;
-        border: none;
-        padding: 15px 15px;
-        cursor: pointer;
-    }
+  .login-btn,
+  .signup-btn {
+    border-radius: 5px;
+    border: none;
+    padding: 15px 15px;
+    cursor: pointer;
+  }
 
-    .login-btn:hover {
-        background-color: $dark-blue;
-        color: $light-green;
-    }
+  .login-btn:hover {
+    background-color: $dark-blue;
+    color: $light-green;
+  }
 
-    .signup-btn {
-        margin-right: 20px;
-    }
-
+  .signup-btn {
+    margin-right: 20px;
+  }
 }
 
-
 main {
+  text-align: center;
+  margin-top: 150px;
 
-    text-align: center;
-    margin-top: 150px;
+  h1 {
+    font-size: 4rem;
+  }
 
-    h1 {
-        font-size: 4rem;
-    }
+  .documents-wrapper{
+    margin: 20px;
+
+    .blogPosts {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(4, 1fr);
+        grid-column-gap: 15px;
+        grid-row-gap: 15px;
+        list-style: none;
+        padding: 25px;
+
+        li {
+            border: 1px solid black;
+            padding: 15px;
+
+            :first-child{
+                margin-bottom: 25px;
+                font-size: 2rem;
+            }
+        }
+      }
+  }
 }
