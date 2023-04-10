@@ -1,4 +1,5 @@
 import printDocuments from "./documents.js";
+import printNavBar from "./navbar.js";
 
 let loginApp = document.querySelector("#loginApp");
 let userMsg = document.querySelector("#userMsg");
@@ -82,11 +83,12 @@ export function printLoginForm() {
                     console.log(data);
                     console.log(data.userName);
                     userMsg.innerHTML = "";
+                    loginApp.innerHTML = "";
                     loggedInMsg.innerHTML = `<h3>Du är nu inloggad ${data[0].userName}!<br>
                     Hoppas du har en fin dag!</h3>`;
                     localStorage.setItem("username", data[0].userName);
-                    printLogoutBtn();
                     printDocuments();
+                    printNavBar();
                 }
                 else {
                     userMsg.innerText = "Inloggning misslyckades, var vänlig och kontrollera användarnamn och lösenord."
@@ -99,23 +101,22 @@ export function printLoginForm() {
         loginApp.append(formDiv);
 }
 
-export function printLogoutBtn() {
-    // SKAPA LOGGA UT KNAPP    
-    let logoutBtn = document.createElement("button");
-    logoutBtn.classList.add("log-out-btn");
-    logoutBtn.innerText = "Logga ut";
+// export function printLogoutBtn() {
+//     // SKAPA LOGGA UT KNAPP    
+//     let logoutBtn = document.createElement("button");
+//     logoutBtn.classList.add("log-out-btn");
+//     logoutBtn.innerText = "Logga ut";
 
 
-    logoutBtn.addEventListener("click", () => {
-        localStorage.removeItem("username");
-        userMsg.innerText = "";
-        loggedInMsg.innerHTML = "";
-        txtArea.innerHTML = "";
-        printLoginForm();
-    })
-    loginApp.innerHTML = "";
-    loginApp.appendChild(logoutBtn);
-}
+//     logoutBtn.addEventListener("click", () => {
+//         localStorage.removeItem("username");
+//         userMsg.innerText = "";
+//         loggedInMsg.innerHTML = "";
+//         printLoginForm();
+//     })
+//     loginApp.innerHTML = "";
+//     loginApp.appendChild(logoutBtn);
+// }
 
     function printSignUpForm() {
     loginApp.innerHTML = "";
