@@ -12,4 +12,3 @@ if (localStorage.getItem("username")) {
     console.log("ÄR EJ INLOGGAD");
     printLoginForm();
 }
-

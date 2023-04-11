@@ -16,9 +16,9 @@ POST http://localhost:3000/documents/add
 Content-Type: application/json
 
 {
-    "newDocumentTitle": "Fredag",
-    "newDocumentContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-    "userId": 1
+    "newDocumentTitle": "Test",
+    "newDocumentContent": "Test",
+    "userName": "Tittie"
 }
 
 ###

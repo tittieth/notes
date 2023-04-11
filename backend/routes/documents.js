@@ -52,12 +52,16 @@ router.post("/add", (req, res) => {
         console.log("err", err);
       }
   
-      let sql = "INSERT INTO documents (documentTitle, documentContent, userId) VALUES (?, ?, ?)";
+      // let sql = "INSERT INTO documents (documentTitle, documentContent, userId) VALUES (?, ?, ?)";
+      let sql = "INSERT INTO documents (documentTitle, documentContent, userId) " +
+      "SELECT ?, ?, users.userId " +
+      "FROM users " +
+      "WHERE users.userName = ?";
 
       let values = [
         newDocument.newDocumentTitle,
         newDocument.newDocumentContent,
-        newDocument.userId,
+        newDocument.userName,
       ];
   
       connection.query(sql, values, (err, data) => {
