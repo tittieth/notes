@@ -1,5 +1,7 @@
 $dark-blue: #0c4160;
 $light-green: #d7dcdd;
+$white: #fff;
+$black: #000;
 
 * {
   margin: 0;
@@ -51,8 +53,8 @@ body {
 }
 
 nav {
-  border-bottom: 1px solid black;
-  border-top: 1px solid black;
+  border-bottom: 1px solid $black;
+  border-top: 1px solid $black;
 
   .nav-ul {
     display: flex;
@@ -112,12 +114,36 @@ main {
       padding: 25px;
 
       li {
-        border: 1px solid black;
+        border: 1px solid $black;
         padding: 15px;
+        background-color: $white;
+        border-radius: 5px;
 
         :first-child {
           margin-bottom: 25px;
           font-size: 2rem;
+        }
+
+        h2 {
+          border-bottom: 1px solid $black;
+        }
+
+        p {
+          margin-bottom: 20px;
+        }
+
+        button {
+          border-radius: 5px;
+          border: none;
+          padding: 15px 15px;
+          cursor: pointer;
+          margin: 15px;
+          background-color: light-green;
+        }
+
+        button:hover {
+          background-color: $dark-blue;
+          color: $light-green;
         }
       }
     }
