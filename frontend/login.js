@@ -109,30 +109,30 @@ export function printLoginForm() {
     signupFormDiv.classList.add("signup-form");
 
     let signupHeader = document.createElement("h1");
-    signupHeader.innerText = "Signup!";
+    signupHeader.innerText = "Skapa konto!";
 
     let newUserName = document.createElement("input");
     newUserName.setAttribute("type", "text");
     newUserName.setAttribute("name", "name");
     newUserName.setAttribute("id", "newUserName");
-    newUserName.placeholder= "name";
+    newUserName.placeholder= "Användarnamn";
 
     let newUserPassword = document.createElement("input");
     newUserPassword .setAttribute("type", "password");
     newUserPassword .setAttribute("name", "password");
     newUserPassword .setAttribute("id", "newUserpassword");
-    newUserPassword.placeholder = "password";
+    newUserPassword.placeholder = "Lösenord";
 
     let newUserEmail = document.createElement("input");
     newUserEmail.setAttribute("type", "text");
     newUserEmail.setAttribute("name", "email");
     newUserEmail.setAttribute("id", "newUserEmail");
-    newUserEmail.placeholder= "email";
+    newUserEmail.placeholder= "Email";
 
     let saveNewUserBtn = document.createElement("button");
     saveNewUserBtn.setAttribute("id", "newUserBtn");
     saveNewUserBtn.classList.add("new-user-btn");
-    saveNewUserBtn.innerText = "Save";
+    saveNewUserBtn.innerText = "Spara";
 
     signupFormDiv.append(signupHeader, newUserName, newUserPassword, newUserEmail, saveNewUserBtn);
     loginApp.append(signupFormDiv);
