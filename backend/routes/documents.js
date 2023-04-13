@@ -85,10 +85,11 @@ router.post("/add", (req, res) => {
         console.log("err", err);
       }
   
-      let sql = "UPDATE documents SET documentContent = ? WHERE documentId = ?";
+      let sql = "UPDATE documents SET documentContent = ?, documentTitle = ? WHERE documentId = ?";
 
       let values = [
         updatedDocument.updatedContent,
+        updatedDocument.updatedTitle,
         documentId
       ];
   

@@ -1,6 +1,6 @@
 console.log("hello world");
 
-import printDocuments from "./documents.js";
+import { printDocuments } from "./documents.js";
 import { printLoginForm} from "./login.js";
 import printNavBar from "./navbar.js";
 

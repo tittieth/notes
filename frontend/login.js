@@ -1,4 +1,4 @@
-import printDocuments from "./documents.js";
+import { printDocuments } from "./documents.js";
 import printNavBar from "./navbar.js";
 
 let loginApp = document.querySelector("#loginApp");
@@ -101,23 +101,6 @@ export function printLoginForm() {
         loginApp.append(formDiv);
 }
 
-// export function printLogoutBtn() {
-//     // SKAPA LOGGA UT KNAPP    
-//     let logoutBtn = document.createElement("button");
-//     logoutBtn.classList.add("log-out-btn");
-//     logoutBtn.innerText = "Logga ut";
-
-
-//     logoutBtn.addEventListener("click", () => {
-//         localStorage.removeItem("username");
-//         userMsg.innerText = "";
-//         loggedInMsg.innerHTML = "";
-//         printLoginForm();
-//     })
-//     loginApp.innerHTML = "";
-//     loginApp.appendChild(logoutBtn);
-// }
-
     function printSignUpForm() {
     loginApp.innerHTML = "";
     userMsg.innerText = "";
@@ -140,17 +123,23 @@ export function printLoginForm() {
     newUserPassword .setAttribute("id", "newUserpassword");
     newUserPassword.placeholder = "password";
 
+    let newUserEmail = document.createElement("input");
+    newUserEmail.setAttribute("type", "text");
+    newUserEmail.setAttribute("name", "email");
+    newUserEmail.setAttribute("id", "newUserEmail");
+    newUserEmail.placeholder= "email";
+
     let saveNewUserBtn = document.createElement("button");
     saveNewUserBtn.setAttribute("id", "newUserBtn");
     saveNewUserBtn.classList.add("new-user-btn");
     saveNewUserBtn.innerText = "Save";
 
-    signupFormDiv.append(signupHeader, newUserName, newUserPassword, saveNewUserBtn);
+    signupFormDiv.append(signupHeader, newUserName, newUserPassword, newUserEmail, saveNewUserBtn);
     loginApp.append(signupFormDiv);
 
     saveNewUserBtn.addEventListener("click", () => {
         // SKAPA EN NY ANVÄNDARE
-        let user = {username: newUserName.value, password: newUserPassword.value };
+        let user = { newUserName: newUserName.value, newUserPassword: newUserPassword.value, newUserEmail: newUserEmail.value };
         console.log(user);
 
         // SKICKA TILL SERVERN

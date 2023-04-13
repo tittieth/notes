@@ -1,5 +1,5 @@
 import { printLoginForm } from "./login.js";
-import printDocuments from "./documents.js";
+import { printDocuments } from "./documents.js";
 import printTextEditor from "./texteditor.js";
 
 const nav = document.getElementById("nav");
@@ -34,6 +34,7 @@ export default function printNavBar() {
 
       localStorage.removeItem("username");
       userMsg.innerText = "";
+      txtArea.innerHTML = "";
       loggedInMsg.innerHTML = "";
       printLoginForm();
 

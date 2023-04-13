@@ -1,7 +1,7 @@
 const txtArea = document.getElementById("textArea");
 
 export default function printTextEditor() {
-    txtArea.innerHTML = `        <label>Titel:</label>
+    txtArea.innerHTML = `        <label>Titel:</label><br>
     <input type="text" id="title" name="title"><br>
     <label>Innehåll:</label>
     <textarea id="textContent"></textarea>
@@ -48,6 +48,3 @@ export default function printTextEditor() {
           });
     })
 }
-
-
-

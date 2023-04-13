@@ -50,39 +50,46 @@ body {
   }
 }
 
-.nav-ul {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  list-style: none;
-  margin: 50px;
-  padding: 5px 0;
-  font-size: 1.5rem;
-  cursor: pointer;
+nav {
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
 
-  a:link {
-    color: #0c4160;
-    box-shadow: inset 0 0 0 0 $dark-blue;
-    margin: 0 -0.25rem;
-    padding: 0.35rem;
-    transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-    text-decoration: none;
-  }
-
-  a:visited {
-    color: $dark-blue;
-  }
-
-  a:hover {
-    color: $light-green;
-    box-shadow: inset 250px 0 0 0 $dark-blue;
-  }
-
-  /* selected link */
-  a:active {
-    color: blue;
+  .nav-ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    list-style: none;
+    margin: 50px;
+    padding: 5px 0;
+    font-size: 1.5rem;
+    cursor: pointer;
+  
+    a:link {
+      color: #0c4160;
+      box-shadow: inset 0 0 0 0 $dark-blue;
+      margin: 0 -0.25rem;
+      padding: 0.35rem;
+      transition: color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      text-decoration: none;
+    }
+  
+    a:visited {
+      color: $dark-blue;
+    }
+  
+    a:hover {
+      color: $light-green;
+      box-shadow: inset 250px 0 0 0 $dark-blue;
+    }
+  
+    /* selected link */
+    a:active {
+      color: blue;
+    }
   }
 }
+
+
 
 main {
   text-align: center;
@@ -115,4 +122,22 @@ main {
       }
     }
   }
+}
+
+.text-area {
+  margin: auto;
+  max-width: 900px;
+
+  input {
+    margin-bottom: 50px;
+    margin-top: 10px;
+    border: none;
+    padding: 15px 200px 15px 10px;
+    border-radius: 5px;
+  }
+
+  label {
+    font-size: 1.5rem;
+  }
+
 }

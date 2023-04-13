@@ -27,5 +27,6 @@ PUT http://localhost:3000/documents/6
 Content-Type: application/json
 
 {
-    "updatedContent": "Snart är det påskafton"
+    "updatedContent": "Snart ",
+    "updatedTitle": "Hej"
 }
