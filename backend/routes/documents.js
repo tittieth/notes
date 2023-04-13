@@ -53,15 +53,16 @@ router.post("/add", (req, res) => {
       }
   
       // let sql = "INSERT INTO documents (documentTitle, documentContent, userId) VALUES (?, ?, ?)";
-      let sql = "INSERT INTO documents (documentTitle, documentContent, userId) " +
-      "SELECT ?, ?, users.userId " +
+      let sql = "INSERT INTO documents (documentTitle, documentDescription, documentContent, userId) " +
+      "SELECT ?, ?, ?, users.userId " +
       "FROM users " +
       "WHERE users.userName = ?";
 
       let values = [
         newDocument.newDocumentTitle,
+        newDocument.newDocumentDescription,
         newDocument.newDocumentContent,
-        newDocument.userName,
+        newDocument.userName
       ];
   
       connection.query(sql, values, (err, data) => {
@@ -85,11 +86,12 @@ router.post("/add", (req, res) => {
         console.log("err", err);
       }
   
-      let sql = "UPDATE documents SET documentContent = ?, documentTitle = ? WHERE documentId = ?";
+      let sql = "UPDATE documents SET documentContent = ?, documentTitle = ?, documentDescription = ? WHERE documentId = ?";
 
       let values = [
         updatedDocument.updatedContent,
         updatedDocument.updatedTitle,
+        updatedDocument.updatedDescription,
         documentId
       ];
   

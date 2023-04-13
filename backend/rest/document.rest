@@ -18,15 +18,17 @@ Content-Type: application/json
 {
     "newDocumentTitle": "Test",
     "newDocumentContent": "Test",
+    "newDocumentDescription": "Ett test dokument",
     "userName": "Tittie"
 }
 
 ###
 
-PUT http://localhost:3000/documents/6
+PUT http://localhost:3000/documents/23
 Content-Type: application/json
 
 {
     "updatedContent": "Snart ",
-    "updatedTitle": "Hej"
+    "updatedTitle": "Hej",
+    "updatedDescription": "test"
 }
