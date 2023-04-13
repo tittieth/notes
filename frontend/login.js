@@ -139,22 +139,27 @@ export function printLoginForm() {
 
     saveNewUserBtn.addEventListener("click", () => {
         // SKAPA EN NY ANVÄNDARE
-        let user = { newUserName: newUserName.value, newUserPassword: newUserPassword.value, newUserEmail: newUserEmail.value };
-        console.log(user);
+        saveNewUser(newUserName, newUserPassword, newUserEmail);
+    })
+}   
 
-        // SKICKA TILL SERVERN
-       fetch("http://localhost:3000/users/add", {
+
+function saveNewUser(newUserName, newUserPassword, newUserEmail) {
+    let user = { newUserName: newUserName.value, newUserPassword: newUserPassword.value, newUserEmail: newUserEmail.value };
+    console.log(user);
+
+    // SKICKA TILL SERVERN
+    fetch("http://localhost:3000/users/add", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-        }, 
+        },
         body: JSON.stringify(user)
-       })
-       .then(res => res.json())
-       .then(data => {
-            console.log(data);
-            printLoginForm(); 
-       });
     })
-}   
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            printLoginForm();
+        });
+}
 
