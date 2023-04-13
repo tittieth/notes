@@ -70,7 +70,7 @@ function editDocument(post, li) {
           <input type="text" id="description" name="description"><br>
           <label>Innehåll:</label>
           <textarea id="textContent"></textarea>
-          <button id="saveBtn">Spara</button>
+          <button id="saveBtn" class="save-btn">Spara</button>
           <div id="textResult"></div>`;
 
   const textContent = document.getElementById("textContent");

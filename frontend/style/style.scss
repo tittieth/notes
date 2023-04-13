@@ -155,15 +155,36 @@ main {
   max-width: 900px;
 
   input {
+    width: 700px;
     margin-bottom: 50px;
     margin-top: 10px;
     border: none;
-    padding: 15px 200px 15px 10px;
+    padding: 15px;
     border-radius: 5px;
+  }
+
+  input:first-of-type {
+    width: 350px;
   }
 
   label {
     font-size: 1.5rem;
+  }
+
+  button {
+    border-radius: 5px;
+    border: none;
+    padding: 15px 55px;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 150px;
+    background-color: $dark-blue;
+    color: $light-green;
+  }
+
+  button:hover {
+    background-color: $white;
+    color: $black;
   }
 
 }
