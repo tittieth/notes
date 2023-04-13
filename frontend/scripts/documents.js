@@ -52,7 +52,7 @@ export function printDocuments() {
         showMoreBtn.addEventListener("click", () => {
           console.log("showmorebutton" + li.id);
           app.innerHTML = "";
-          app.innerHTML = `${post.documentContent}`
+          app.innerHTML = `<div class="documentContent">${post.documentContent}</div>`
         })
       });
 
