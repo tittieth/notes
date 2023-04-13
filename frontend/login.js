@@ -140,7 +140,7 @@ export function printLoginForm() {
     saveNewUserBtn.addEventListener("click", () => {
         const validateEmail= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!validateEmail.test(newUserEmail.value)) {
-            alert("Please enter a valid email address");
+            alert("Ogiltig emailadress");
             return;
         }
 
