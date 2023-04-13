@@ -35,10 +35,12 @@ export function printDocuments() {
         let content = document.createElement("p");
         let editBtn = document.createElement("button");
         editBtn.innerText = "Redigera";
+        let showMoreBtn = document.createElement("button");
+        showMoreBtn.innerText = "Visa dokument";
 
         title.innerHTML = `${post.documentTitle}`;
-        content.innerHTML = `${post.documentContent}`;
-        li.append(title, content, editBtn);
+        content.innerHTML = `${post.documentDescription}`;
+        li.append(title, content, editBtn, showMoreBtn);
         documentsList.append(li);
 
         editBtn.addEventListener("click", () => {
