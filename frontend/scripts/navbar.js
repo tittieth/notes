@@ -10,7 +10,7 @@ export default function printNavBar() {
   const navLinks = document.createElement("ul");
   navLinks.classList.add("nav-ul")
   navLinks.innerHTML = `
-    <li class="show-documents-link"><a href="#">Visa Dokument</a></li>
+    <li class="show-documents-link"><a href="#">Visa Alla Dokument</a></li>
     <li class="create-new-document-link"><a href="#">Skapa nytt dokument</a></li>
     <li class="log-out"><a href="#">Logga ut</a></li>
     `;

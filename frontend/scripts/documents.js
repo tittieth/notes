@@ -48,6 +48,12 @@ export function printDocuments() {
           app.innerHTML = "";
           editDocument(post, li);
         });
+
+        showMoreBtn.addEventListener("click", () => {
+          console.log("showmorebutton" + li.id);
+          app.innerHTML = "";
+          app.innerHTML = `${post.documentContent}`
+        })
       });
 
       app.innerHTML = "";
