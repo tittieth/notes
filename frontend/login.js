@@ -138,28 +138,44 @@ export function printLoginForm() {
     loginApp.append(signupFormDiv);
 
     saveNewUserBtn.addEventListener("click", () => {
-        // SKAPA EN NY ANVÄNDARE
+        const validateEmail= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!validateEmail.test(newUserEmail.value)) {
+            alert("Please enter a valid email address");
+            return;
+        }
+
         saveNewUser(newUserName, newUserPassword, newUserEmail);
     })
 }   
 
 
 function saveNewUser(newUserName, newUserPassword, newUserEmail) {
-    let user = { newUserName: newUserName.value, newUserPassword: newUserPassword.value, newUserEmail: newUserEmail.value };
-    console.log(user);
-
-    // SKICKA TILL SERVERN
-    fetch("http://localhost:3000/users/add", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(user)
-    })
+    // Kontrollera om användarnamet redan finns
+    fetch("http://localhost:3000/users/" + newUserName.value)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
-            printLoginForm();
+            if (data.length > 0) {
+                alert("Användarnamnet är upptaget, var god välj ett annat");
+                return;
+            }
+
+            let user = { newUserName: newUserName.value, newUserPassword: newUserPassword.value, newUserEmail: newUserEmail.value };
+            console.log(user);
+
+            // SKICKA TILL SERVERN
+            fetch("http://localhost:3000/users/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(user)
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    printLoginForm();
+                    alert("Ny användare skapad");
+                });
         });
 }
 

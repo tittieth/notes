@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 const connection = require("../conn");
 
-/* GET users listing. */
+// GET users listing. 
 router.get("/", (req, res) => {
   connection.connect((err) => {
     if (err) {
@@ -22,7 +22,32 @@ router.get("/", (req, res) => {
   });
 });
 
-/* Add a new user */
+// check if user already exist 
+
+router.get("/:newUserName", (req, res) => {
+
+  const newUserName = req.params.newUserName;
+
+  connection.connect((err) => {
+    if (err) {
+      console.log("err", err);
+    }
+
+    let sql = "SELECT * FROM users WHERE userName = ?";
+
+    connection.query(sql, newUserName, (err, data) => {
+      if (err) {
+        console.log("err", err);
+      }
+
+      console.log("data från query", data);
+      res.json(data);
+    });
+  });
+});
+
+
+//Add a new user 
 router.post("/add", (req, res) => {
   let newUser = req.body;
 
@@ -49,7 +74,7 @@ router.post("/add", (req, res) => {
   });
 });
 
-/* Login user */
+// Login user 
 
 router.post("/login", (req, res) => {
   const userName = req.body.userName;
