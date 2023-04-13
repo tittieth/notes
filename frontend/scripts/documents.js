@@ -64,8 +64,10 @@ export function printDocuments() {
 function editDocument(post, li) {
   const txtArea = document.getElementById("textArea");
 
-  txtArea.innerHTML = `        <label>Titel:</label>
+  txtArea.innerHTML = `        <label>Titel:</label><br>
           <input type="text" id="title" name="title"><br>
+          <label>Beskrivning:</label><br>
+          <input type="text" id="description" name="description"><br>
           <label>Innehåll:</label>
           <textarea id="textContent"></textarea>
           <button id="saveBtn">Spara</button>
@@ -73,9 +75,11 @@ function editDocument(post, li) {
 
   const textContent = document.getElementById("textContent");
   const title = document.getElementById("title");
+  const documentDescription = document.getElementById("description");
 
   textContent.innerHTML = `${post.documentContent}`;
   title.value = `${post.documentTitle}`;
+  documentDescription.value = `${post.documentDescription}`;
 
   tinymce.init({
     selector: "#textContent",
@@ -91,14 +95,15 @@ function editDocument(post, li) {
 
   document.getElementById("saveBtn").addEventListener("click", function (e) {
     e.preventDefault();
-    saveUpdatedDocument(textContent, title, li);
+    saveUpdatedDocument(textContent, title, documentDescription, li);
   });
 }
 
-function saveUpdatedDocument(textContent, title, li) {
+function saveUpdatedDocument(textContent, title, documentDescription, li) {
   let content = {
     updatedContent: textContent.value,
-    updatedTitle: title.value
+    updatedTitle: title.value,
+    updatedDescription: documentDescription.value
   };
 
   console.log(content);

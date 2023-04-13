@@ -3,6 +3,8 @@ const txtArea = document.getElementById("textArea");
 export default function printTextEditor() {
     txtArea.innerHTML = `        <label>Titel:</label><br>
     <input type="text" id="title" name="title"><br>
+    <label>Beskrivning:</label><br>
+    <input type="text" id="description" name="description"><br>
     <label>Innehåll:</label>
     <textarea id="textContent"></textarea>
     <button id="saveBtn">Spara</button>
@@ -29,6 +31,7 @@ export default function printTextEditor() {
         let newDocument = {
             userName: user,
             newDocumentTitle: document.getElementById("title").value,
+            newDocumentDescription: document.getElementById("description").value,
             newDocumentContent: tinymce.activeEditor.getContent()
         }
     
