@@ -115,6 +115,10 @@ function editDocument(post, li) {
   tinymce.init({
     selector: "#textContent",
     plugins: "code",
+    force_p_newlines : false,
+    force_br_newlines : true,
+    convert_newlines_to_brs : false,
+    remove_linebreaks : true,    
     toolbar: "undo redo | forecolor backcolor | styles | styleselect bold italic | alignleft alignright | code",
 
     setup: function (editor) {
