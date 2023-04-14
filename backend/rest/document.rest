@@ -32,3 +32,10 @@ Content-Type: application/json
     "updatedTitle": "Hej",
     "updatedDescription": "test"
 }
+
+###
+
+
+DELETE http://localhost:3000/documents/23
+Content-Type: application/json
+

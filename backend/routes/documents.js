@@ -106,4 +106,27 @@ router.post("/add", (req, res) => {
     });
   });
 
+
+  router.delete("/:documentId", (req, res) => {
+    let documentId = req.params.documentId;
+  
+    connection.connect((err) => {
+      if (err) {
+        console.log("err", err);
+      }
+  
+      let sql = "DELETE FROM documents WHERE documentId = ?";
+  
+      connection.query(sql, documentId, (err, data) => {
+        if (err) {
+          console.log("err", err);
+        }
+  
+        console.log("data från query", data);
+        res.status(200).json("Dokumentet raderat");
+      });
+    });
+  });
+
+
 module.exports = router;

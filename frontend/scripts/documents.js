@@ -52,11 +52,42 @@ export function printDocuments() {
         showMoreBtn.addEventListener("click", () => {
           console.log("showmorebutton" + li.id);
           app.innerHTML = "";
-          app.innerHTML = `<div class="documentContent">${post.documentContent}</div>`
+
+          let div = document.createElement("div")
+          div.classList.add("documentContent");
+          div.innerHTML = `${post.documentContent}`;
+
+          let buttonDiv = document.createElement("div");
+          buttonDiv.classList.add("buttons-wrapper");
+
+          let eraseBtn = document.createElement("button");
+          eraseBtn.innerText = "Radera";
+
+          buttonDiv.appendChild(eraseBtn);
+          app.append(div, buttonDiv)
+
+          eraseBtn.addEventListener("click", () => {
+            console.log(("erase" + li.id));
+
+            fetch("http://localhost:3000/documents/" + li.id, {
+            method: "DELETE",
+            headers: {
+              "Content-Type": "application/json",
+            }
+            })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              document.getElementById("textResult").innerHTML =
+                "Dokumentet raderat!";
+              app.innerHTML = "";
+            });
+        })
         })
       });
 
       app.innerHTML = "";
+      textResult.innerHTML = "";
       app.appendChild(documentsWrapper);
     });
 }
