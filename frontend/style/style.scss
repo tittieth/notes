@@ -94,7 +94,7 @@ nav {
 
 
 main {
-  text-align: center;
+  // text-align: center;
   margin-top: 150px;
 
   h1 {
@@ -112,6 +112,7 @@ main {
       grid-row-gap: 15px;
       list-style: none;
       padding: 25px;
+      text-align: center;
 
       li {
         border: 1px solid $black;
