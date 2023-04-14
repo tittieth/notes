@@ -18,22 +18,26 @@ export default function printNavBar() {
   nav.append(navLinks);
 
   navLinks.addEventListener("click", (e) => {
+    e.preventDefault();
     if (e.target.parentNode.classList.contains("show-documents-link")) {
       console.log("show document button clicked");
       app.innerHTML = ""; 
+      userMsg.style.display = "none";
       txtArea.innerHTML = "";
       printDocuments();
     }
     if (e.target.parentNode.classList.contains("create-new-document-link")) {
       console.log("new document button clicked");
       app.innerHTML = "";
+      userMsg.style.display = "none";
       printTextEditor();
     }
     if (e.target.parentNode.classList.contains("log-out")) {
       console.log("logout button clicked");
 
       localStorage.removeItem("username");
-      userMsg.innerText = "";
+      userMsg.innerText = "Du har blivit utloggad!";
+      userMsg.style.display = "block";
       txtArea.innerHTML = "";
       loggedInMsg.innerHTML = "";
       printLoginForm();

@@ -33,63 +33,76 @@ export function printDocuments() {
 
         let title = document.createElement("h2");
         let content = document.createElement("p");
-        let editBtn = document.createElement("button");
-        editBtn.innerText = "Redigera";
+        // let editBtn = document.createElement("button");
+        // editBtn.innerText = "Redigera";
         let showMoreBtn = document.createElement("button");
         showMoreBtn.innerText = "Visa dokument";
 
         title.innerHTML = `${post.documentTitle}`;
         content.innerHTML = `${post.documentDescription}`;
-        li.append(title, content, editBtn, showMoreBtn);
+        li.append(title, content, showMoreBtn);
         documentsList.append(li);
 
-        editBtn.addEventListener("click", () => {
-          console.log("clicked" + li.id);
-          app.innerHTML = "";
-          editDocument(post, li);
-        });
-
-        showMoreBtn.addEventListener("click", () => {
+        showMoreBtn.addEventListener("click", (e) => {
+          e.preventDefault(); 
           console.log("showmorebutton" + li.id);
-          app.innerHTML = "";
-
-          let div = document.createElement("div")
-          div.classList.add("documentContent");
-          div.innerHTML = `${post.documentContent}`;
-
-          let buttonDiv = document.createElement("div");
-          buttonDiv.classList.add("buttons-wrapper");
-
-          let eraseBtn = document.createElement("button");
-          eraseBtn.innerText = "Radera";
-
-          buttonDiv.appendChild(eraseBtn);
-          app.append(div, buttonDiv)
-
-          eraseBtn.addEventListener("click", () => {
-            console.log(("erase" + li.id));
-
-            fetch("http://localhost:3000/documents/" + li.id, {
-            method: "DELETE",
-            headers: {
-              "Content-Type": "application/json",
-            }
-            })
-            .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              document.getElementById("textResult").innerHTML =
-                "Dokumentet raderat!";
-              app.innerHTML = "";
-            });
-        })
+          showDocumentContent(post, li);
         })
       });
 
       app.innerHTML = "";
-      textResult.innerHTML = "";
       app.appendChild(documentsWrapper);
     });
+}
+
+function showDocumentContent(post, li) {
+  app.innerHTML = "";
+
+  let wrapper = document.createElement("div");
+  wrapper.classList.add("document-wrapper");
+
+  let div = document.createElement("div");
+  div.classList.add("documentContent");
+  div.innerHTML = `${post.documentContent}`;
+
+  let buttonDiv = document.createElement("div");
+  buttonDiv.classList.add("buttons-wrapper");
+
+  let editBtn = document.createElement("button");
+  editBtn.innerText = "Redigera";
+
+  let eraseBtn = document.createElement("button");
+  eraseBtn.innerText = "Radera";
+
+  buttonDiv.append(eraseBtn, editBtn);
+  wrapper.append(div, buttonDiv);
+  app.append(wrapper);
+
+  editBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("clicked" + li.id);
+    app.innerHTML = "";
+    editDocument(post, li);
+  });
+
+  eraseBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log(("erase" + li.id));
+
+    fetch("http://localhost:3000/documents/" + li.id, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        userMsg.innerText = "Dokumentet har blivit raderat!";
+        userMsg.style.display = "block";
+        app.innerHTML = "";
+      });
+  });
 }
 
 function editDocument(post, li) {
@@ -115,7 +128,6 @@ function editDocument(post, li) {
   tinymce.init({
     selector: "#textContent",
     plugins: "code",
-    force_p_newlines : false,
     force_br_newlines : true,
     convert_newlines_to_brs : false,
     remove_linebreaks : true,    
@@ -153,8 +165,8 @@ function saveUpdatedDocument(textContent, title, documentDescription, li) {
     .then((res) => res.json())
     .then((data) => {
       console.log(data);
-      document.getElementById("textResult").innerHTML =
-        "Dina ändringar är sparade!";
+      userMsg.innerText = "Ändringarna sparades!";
+      userMsg.style.display = "block";
     });
 }
 

@@ -2,7 +2,7 @@ import { printDocuments } from "./documents.js";
 import printNavBar from "./navbar.js";
 
 let loginApp = document.querySelector("#loginApp");
-let userMsg = document.querySelector("#userMsg");
+export let userMsg = document.querySelector("#userMsg");
 let loggedInMsg = document.querySelector("#loggedInMsg");
 
 export function printLoginForm() {
@@ -57,17 +57,20 @@ export function printLoginForm() {
     formWrapper.append(loginDiv, signUpDiv);
     formDiv.append(formWrapper);
 
-    signUpBtn.addEventListener("click", () => {
+    signUpBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         loggedInMsg.innerHTML = "";
         printSignUpForm();
     });
 
-    loginBtn.addEventListener("click", () => {
+    loginBtn.addEventListener("click", (e) => {
+        e.preventDefault();
 
         let loginUser = {
             userName: nameInput.value,
             userPassword: passwordInput.value
         }
+
         console.log(loginUser);
         
         fetch("http://localhost:3000/users/login", {
@@ -82,28 +85,30 @@ export function printLoginForm() {
                 if (data[0].userName) {
                     console.log(data);
                     console.log(data.userName);
-                    userMsg.innerHTML = "";
+                    localStorage.setItem("username", data[0].userName);
+                    userMsg.innerText = "";
+                    userMsg.style.display = "none";
                     loginApp.innerHTML = "";
                     loggedInMsg.innerHTML = `<h3>Du är nu inloggad ${data[0].userName}!<br>
-                    Hoppas du har en fin dag!</h3>`;
-                    localStorage.setItem("username", data[0].userName);
+                    Välkommen tillbaka!</h3><div><img src="./img/logo-folder.png" alt="" width="250" height="200"</div>`;
                     printDocuments();
                     printNavBar();
                 }
                 else {
                     userMsg.innerText = "Inloggning misslyckades, var vänlig och kontrollera användarnamn och lösenord."
+                    userMsg.style.display = "block";
                 }
            });
         });
 
         loginApp.innerHTML = "";
-        userMsg.innerText = "";
         loginApp.append(formDiv);
 }
 
     function printSignUpForm() {
     loginApp.innerHTML = "";
     userMsg.innerText = "";
+    userMsg.style.display = "none";
 
     let signupFormDiv = document.createElement("div");
     signupFormDiv.classList.add("signup-form");
@@ -137,10 +142,17 @@ export function printLoginForm() {
     signupFormDiv.append(signupHeader, newUserName, newUserPassword, newUserEmail, saveNewUserBtn);
     loginApp.append(signupFormDiv);
 
-    saveNewUserBtn.addEventListener("click", () => {
+    saveNewUserBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         const validateEmail= /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!validateEmail.test(newUserEmail.value)) {
-            alert("Ogiltig emailadress");
+            userMsg.innerText = "Ogiltig emailadress"
+            userMsg.style.display = "block";
+            return;
+        }
+        if (newUserPassword.value.trim() === "") {
+            userMsg.innerText = "Du måste fylla i lösenord";
+            userMsg.style.display = "block";
             return;
         }
 
@@ -155,7 +167,8 @@ function saveNewUser(newUserName, newUserPassword, newUserEmail) {
         .then(res => res.json())
         .then(data => {
             if (data.length > 0) {
-                alert("Användarnamnet är upptaget, var god välj ett annat");
+                userMsg.innerText = "Användarnamnet är upptaget, var god välj ett annat";
+                userMsg.style.display = "block";
                 return;
             }
 
@@ -174,7 +187,8 @@ function saveNewUser(newUserName, newUserPassword, newUserEmail) {
                 .then(data => {
                     console.log(data);
                     printLoginForm();
-                    alert("Ny användare skapad");
+                    userMsg.innerText = "Ny användare skapad";
+                    userMsg.style.display = "block";
                 });
         });
 }

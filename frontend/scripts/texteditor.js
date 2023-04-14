@@ -1,4 +1,5 @@
 const txtArea = document.getElementById("textArea");
+import { userMsg } from "./login.js";
 
 export default function printTextEditor() {
     txtArea.innerHTML = `        <label>Titel:</label><br>
@@ -7,13 +8,11 @@ export default function printTextEditor() {
     <input type="text" id="description" name="description"><br>
     <label>Innehåll:</label>
     <textarea id="textContent"></textarea>
-    <button id="saveBtn">Spara</button>
-    <div id="textResult"></div>`
+    <button id="saveBtn">Spara</button>`
 
     tinymce.init({
         selector: "#textContent",
         plugins: "code",
-        force_p_newlines : false,
         force_br_newlines : true,
         convert_newlines_to_brs : false,
         remove_linebreaks : true,  
@@ -51,7 +50,8 @@ export default function printTextEditor() {
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
-            document.getElementById("textResult").innerHTML = "Dokumentet sparades!";
+            userMsg.innerText = "Dokumentet sparades!";
+            userMsg.style.display = "block";
           });
     })
 }
