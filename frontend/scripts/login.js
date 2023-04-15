@@ -23,7 +23,7 @@ export function printLoginForm() {
     nameInput.setAttribute("type", "text");
     nameInput.setAttribute("name", "name");
     nameInput.setAttribute("id", "name");
-    nameInput.placeholder = "name";
+    nameInput.placeholder = "Användarnamn";
     let span = document.createElement("span");
     let labelName = document.createElement("label");
 
@@ -33,7 +33,7 @@ export function printLoginForm() {
     passwordInput.setAttribute("type", "password");
     passwordInput.setAttribute("name", "password");
     passwordInput.setAttribute("id", "password");
-    passwordInput.placeholder = "password";
+    passwordInput.placeholder = "Lösenord";
     let spanTwo = document.createElement("span");
     let labelPassword = document.createElement("label");
 
