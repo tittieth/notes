@@ -22,7 +22,7 @@ export function printDocuments() {
       documentsWrapper.classList.add("documents-wrapper");
 
       let documentsList = document.createElement("ul");
-      documentsList.classList.add("blogPosts");
+      documentsList.classList.add("documents");
       documentsList.innerHTML = "";
 
       documentsWrapper.appendChild(documentsList);
